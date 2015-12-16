@@ -1,5 +1,4 @@
 ﻿/* SEOUrlHandler.c
- * Developed by Tron Systems Ltd.
  * Released under GPL-3.0 2011-09-12
  */
 
