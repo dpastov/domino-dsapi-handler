@@ -56,3 +56,19 @@ Linker command line used for the build:
 6. License
 
 The source code is released under the GPL-3.0 license.
+
+For Linux compile & linking code
+
+compile
+
+echo "- creating dsapistub1.o";
+gcc dsapistub1.c -I/opt/lotus/notesapi/include -c -O -w  -m64 -DGCC3 -DGCC4 -fno-strict-aliasing -DGCC_LBLB_NOT_SUPPORTED -Wformat -Wall -Wcast-align -Wconversion  -DUNIX -DLINUX -DLINUX86 -DND64 -DW32 -DLINUX64 -DW -DLINUX86_64 -DDTRACE -DPTHREAD_KERNEL -D_REENTRANT -DUSE_THREADSAFE_INTERFACES -D_POSIX_THREAD_SAFE_FUNCTIONS  -DHANDLE_IS_32BITS -DHAS_IOCP -DHAS_BOOL -DHAS_DLOPEN -DUSE_PTHREAD_INTERFACES -DLARGE64_FILES -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -DNDUNIX64 -DLONGIS64BIT -DPRODUCTION_VERSION -DOVERRIDEDEBUG  -fPIC
+echo "- done";
+
+link 
+
+echo "creating so";
+gcc -m64 -DGCC3 -DGCC4 "/opt/lotus/notes/latest/linux/libnotes.so" -fno-strict-aliasing -DGCC_LBLB_NOT_SUPPORTED -Wformat -Wall -Wcast-align -Wconversion  -shared -fPIC -Wl,-Bsymbolic,--whole-archive,-znodefs,-ztext -Wl,--no-whole-archive -L/opt/lotus/notesapi/lib/linux64 -L/lib64 -ldl -lrt -lm -lstdc++ -L/lib64 -lpthread -lc -lresolv -lc dsapistub1.o -o libdsapistub1.so
+echo "done";
+
+
